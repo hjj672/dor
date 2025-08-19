@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  download-organizer:
+    build: .
+    container_name: download-organizer
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/Downloads:/app/watch_folder
+      - ./logs:/app/logs
+    environment:
+      - DOWNLOADS_DIR=/app/watch_folder
+      - LOG_LEVEL=INFO
+    privileged: true
+    user: "1000:1000"  # Replace with your user ID if different
